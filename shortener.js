@@ -35,9 +35,10 @@ class Shortener extends dbClient {
     // - if it doesn't
     //   - generate a new key using this.nextKey()
     //   - using the key, insert a new record into the database
+    key = await this.nextKey(null);
 
     // "RETURNING *" is specific to postgres and will let you return the new values you just inserted
-    const res = await this._db.query('INSERT INTO <complete the query> RETURNING *', [key, url]);
+    const res = await this._db.query('INSERT INTO links (key,url) VALUES ($1, $2) <complete the query> RETURNING *', [key, url]);
     return res.rows.length ? res.rows[0] : null;
   }
 
