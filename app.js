@@ -64,7 +64,7 @@ const main = async () => {
     const url_starts_with_http = true;
     if (url_starts_with_http) {
       // todo: get data from shortener module
-      const data = shortener.insert(url);
+      const data = await shortener.insert(url);
       res.send(data);
     }
     else {
